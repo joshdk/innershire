@@ -4,56 +4,78 @@
 		jx.load(url, onSuccess, "json");
 	}
 
-	window.onload = function(){
-		if(!geoPosition.init()){  // Geolocation Initialisation
+	var fillLocation = function(){
+		if(!geoPosition.init()){
 			console.log("Geolocation not supported...");
 			return;
 		}
 
 		geoPosition.getCurrentPosition(
 			function(position){
-				shire.init(ajax);
-				shire.setLocation(position.coords.latitude + "," + position.coords.longitude);
-//{{{ Check inner shire
-				shire.checkInnerShire(
-					function(isInner, time){
-						console.log(isInner);
+				document.getElementById("form-address").value = position.coords.latitude + "," + position.coords.longitude;
+			},
+			function(){
+
+			}
+		);
+	}
+
+	var searchLocation = function(){
+
+		var address = document.getElementById("form-address").value;
+		var answerNode = document.getElementById("answer");
+
+		shire.init(ajax);
+		shire.setLocation(address);
+
+		shire.checkInnerShire(
+			function(isInner, time){
+
+				if(isInner){
+					console.log("You are in the inner shire!");
+					answerNode.innerHTML = "You are in the inner shire!";
+					return;
+				}
+//{{{ Check outer shire
+				shire.checkOuterShire(
+					function(isOuter, time){
+						console.log(isOuter);
 						console.log(time);
 
-						if(isInner){
-							console.log("You are in the inner shire!");
+						if(isOuter){
+							console.log("You are in the outer shire!");
+							answerNode.innerHTML = "You are in the outer shire!";
 							return;
 						}
-//{{{ Check outer shire
-						shire.checkOuterShire(
-							function(isOuter, time){
-								console.log(isOuter);
-								console.log(time);
 
-								if(isOuter){
-									console.log("You are in the outer shire!");
-									return;
-								}
+						console.log("You are outside the shire...");
+						answerNode.innerHTML = "You are outside the shire entirely...";
 
-								console.log("You are outside the shire...");
-
-							},
-							function(){
-								console.log("checkOuterShire failed...");
-							}
-						);
-//}}}
 					},
 					function(){
-						console.log("checkInnerShire failed...");
+						console.log("checkOuterShire failed...");
 					}
 				);
 //}}}
 			},
 			function(){
-				console.log("failed to obtain geoposition");
+				console.log("checkInnerShire failed...");
 			}
 		);
+
+	}
+
+
+
+	window.onload = function(){
+		document.getElementById("form-locate").onclick = function(){
+			fillLocation();
+		}
+
+		document.getElementById("form").onsubmit = function(){
+			searchLocation();
+			return false;
+		}
 
 	};
 
