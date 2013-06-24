@@ -12,7 +12,7 @@
 
 		geoPosition.getCurrentPosition(
 			function(position){
-				document.getElementById("form-address").value = position.coords.latitude + "," + position.coords.longitude;
+				document.getElementById("form-address").value = position.coords.latitude + ", " + position.coords.longitude;
 			},
 			function(){
 
@@ -70,6 +70,12 @@
 	window.onload = function(){
 		document.getElementById("form-locate").onclick = function(){
 			fillLocation();
+			return false;
+		}
+
+		document.getElementById("form-submit").onclick = function(){
+			document.getElementById("form").onsubmit();
+			return false;
 		}
 
 		document.getElementById("form").onsubmit = function(){

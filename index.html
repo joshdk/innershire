@@ -9,6 +9,14 @@
 		<meta name="description" content="Palantir inner shire distance calculator">
 		<meta name="author" content="Josh Komoroske">
 
+<!--{{{ Styles -->
+		<link rel="shortcut icon" href="/favicon.png">
+		<link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="/assets/css/main.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<!--}}}-->
+
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -18,16 +26,31 @@
 
 <!--{{{ Body -->
 	<body>
-		<button id="form-locate">Use current location</button>
+		<div class="container">
+			<div class="row">
+				<div class="offset2 span8">
+					<a id="form-locate" class="btn btn-large btn-inverse btn-block" href="#"><i class="icon-globe icon-white"></i> Use current location</a>
+				</div>
+			</div>
 
-		<form id="form">
-			<fieldset>
-				<input id="form-address" type="text" placeholder="Enter an address...">
-				<button id="form-submit" type="submit">Search</button>
-			</fieldset>
-		</form>
+			<form id="form">
+				<fieldset>
+					<div class="row">
+						<div class="offset2 span6">
+							<input id="form-address" type="text" class="" placeholder="Enter an address...">
+						</div>
+						<div class="span2">
+							<a id="form-submit" class="btn btn-inverse btn-block" href="#"><i class="icon-search icon-white"></i> Search</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
 
-		<h1 id="answer"></h1>
+			<div class="row">
+				<h1 id="answer"></h1>
+			</div>
+
+		</div>
 
 		<script src="/assets/js/geoPosition.js" type="text/javascript"></script>
 		<script src="/assets/js/jx.min.js" type="text/javascript"></script>

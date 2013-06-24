@@ -1,0 +1,26 @@
+h1 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+body {
+	padding: 50px 10px;
+}
+
+#form {
+	margin-top: 40px;
+}
+
+
+button, input, a.btn {
+	margin-bottom: 10px;
+}
+
+[class*="span"] {
+}
+
+input[type=text] {
+	width: 100%;
+	box-sizing: border-box;
+	height: 28px;
+}
