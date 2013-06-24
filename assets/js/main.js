@@ -74,7 +74,7 @@
 		}
 
 		document.getElementById("form-submit").onclick = function(){
-			document.getElementById("form").onsubmit();
+			searchLocation();
 			return false;
 		}
 
