@@ -28,6 +28,8 @@
 		shire.init(ajax);
 		shire.setLocation(address);
 
+		answerNode.innerHTML = "Searching...";
+
 		shire.checkInnerShire(
 			function(isInner, time){
 
