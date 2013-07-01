@@ -6,7 +6,7 @@
 
 	var fillLocation = function(){
 		if(!geoPosition.init()){
-			console.log("Geolocation not supported...");
+			alert("Error: Your device does not currently support Geolocation.");
 			return;
 		}
 
@@ -15,7 +15,7 @@
 				document.getElementById("form-address").value = position.coords.latitude + ", " + position.coords.longitude;
 			},
 			function(){
-
+				alert("Error: Could not obtain device Geolocation.");
 			}
 		);
 	}
@@ -27,6 +27,8 @@
 
 		shire.init(ajax);
 		shire.setLocation(address);
+
+		answerNode.innerHTML = "Searching...";
 
 		shire.checkInnerShire(
 			function(isInner, time){
