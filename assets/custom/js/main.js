@@ -1,8 +1,4 @@
-;(function(geoPosition, jx, shire){
-
-	var ajax = function(url, onSuccess, onError){
-		jx.load(url, onSuccess, "json");
-	}
+;(function(geoPosition, $, shire){
 
 	var fillLocation = function(){
 		if(!geoPosition.init()){
@@ -25,7 +21,7 @@
 		var address = document.getElementById("form-address").value;
 		var answerNode = document.getElementById("answer");
 
-		shire.init(ajax);
+		shire.init($.getJSON);
 		shire.setLocation(address);
 
 		answerNode.innerHTML = "Searching...";
@@ -87,4 +83,4 @@
 
 	};
 
-})(geoPosition, jx, shire);
+})(geoPosition, $, shire);
