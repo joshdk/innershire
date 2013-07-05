@@ -1,7 +1,8 @@
 ;var shire = (function(){
 
-	var shire = {
-//{{{ Location definitions
+	var shire = {};
+
+	shire.settings = {
 		origin : "100 Hamilton Ave, Palo Alto, CA",
 		inner : {
 			mode : "walking",
@@ -11,8 +12,8 @@
 			mode : "bicycling",
 			time : 60 * 15
 		}
-//}}}
 	};
+
 
 	var ajax = false;
 	var location = false;
@@ -32,9 +33,9 @@
 		}
 
 		var params = [
-			"origins=" + encodeURIComponent(shire.origin),
+			"origins=" + encodeURIComponent(shire.settings.origin),
 			"destinations=" + encodeURIComponent(location),
-			"mode=" + shire[name].mode,
+			"mode=" + shire.settings[name].mode,
 			"sensor=true"
 		];
 
@@ -44,7 +45,7 @@
 			function(data){
 				try{
 					time = data.rows[0].elements[0].duration.value;
-					onSuccess(time <= shire[name].time, time);
+					onSuccess(time <= shire.settings[name].time, time);
 				}catch(e){
 					onError();
 				}
