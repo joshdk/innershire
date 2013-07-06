@@ -37,6 +37,7 @@
 						if(isInner){
 							console.log("You are in the inner shire!");
 							$answerInner.text("You are in the inner shire!");
+							return;
 						}else{
 							$answerInner.text("You are not in the inner shire...");
 						}
