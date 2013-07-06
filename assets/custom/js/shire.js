@@ -29,6 +29,7 @@
 //{{{ Check if the given location is inside the given shire
 	shire.checkShire = function(name, onSuccess, onError){
 		if(!location){
+			onError();
 			return;
 		}
 
